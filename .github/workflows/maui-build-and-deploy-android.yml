@@ -1,4 +1,4 @@
-name: Build MAUI Android
+name: Build & Deploy MAUI Android
 
 on:
   workflow_dispatch:
