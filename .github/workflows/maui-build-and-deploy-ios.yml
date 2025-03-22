@@ -1,0 +1,39 @@
+name: Build & Deploy MAUI iOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  maui-build-ios:
+    uses: samuelgustin/maui-workflows/.github/workflows/maui-build-ios.yml@main
+    with:
+      macos-runner-name: "macos-15"
+      xcode-version: "16.2"
+      codesigning-identity: "iOS Distribution"
+      codesigning-provisioning-profile-name: "Wildcard Distribution Profile"
+      dotnet-version: "9.0.x"
+      dotnet-publish-version: "9.0"
+      project-directory: "MauiApp1/"
+      project-name: "MauiApp1"
+      ipa-filename: "mauiapp.ipa"
+      production-branch-name: "main"
+      staging-branch-pattern: "release/"
+      appsettings-filename: "appsettings.json"
+    secrets:
+      IOS_SIGNING_CERTIFICATE_BASE64: ${{ secrets.IOS_SIGNING_CERTIFICATE_BASE64 }}
+      IOS_SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.IOS_SIGNING_CERTIFICATE_PASSWORD }}
+      IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+      IOS_KEYCHAIN_PASSWORD: ${{ secrets.IOS_KEYCHAIN_PASSWORD }}
+
+  deploy-ios-to-firebase:
+    uses: samuelgustin/maui-workflows/.github/workflows/distribute-to-firebase.yml@main
+    needs: maui-build-ios
+    with:
+      artifact-name: "mauiapp.ipa"
+      firebase-app-id: "1:569511542907:ios:658471e11cd8c8e48d22de"
+      project-directory: "MauiApp1/"
+      project-name: "MauiApp1"
+      application-platform: "ios"
+      production-branch-name: "main"
+    secrets:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

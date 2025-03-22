@@ -1,0 +1,26 @@
+name: Build MAUI iOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  maui-build-ios:
+    uses: samuelgustin/maui-workflows/.github/workflows/maui-build-ios.yml@main
+    with:
+      macos-runner-name: "macos-15"
+      xcode-version: "16.2"
+      codesigning-identity: "iOS Distribution"
+      codesigning-provisioning-profile-name: "Wildcard Distribution Profile"
+      dotnet-version: "9.0.x"
+      dotnet-publish-version: "9.0"
+      project-directory: "MauiApp1/"
+      project-name: "MauiApp1"
+      ipa-filename: "mauiapp.ipa"
+      production-branch-name: "main"
+      staging-branch-pattern: "release/"
+      appsettings-filename: "appsettings.json"
+    secrets:
+      IOS_SIGNING_CERTIFICATE_BASE64: ${{ secrets.IOS_SIGNING_CERTIFICATE_BASE64 }}
+      IOS_SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.IOS_SIGNING_CERTIFICATE_PASSWORD }}
+      IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+      IOS_KEYCHAIN_PASSWORD: ${{ secrets.IOS_KEYCHAIN_PASSWORD }}

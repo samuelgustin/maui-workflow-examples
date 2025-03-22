@@ -1,0 +1,22 @@
+name: Build & Deploy MAUI Android
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  maui-build-android:
+    uses: samuelgustin/maui-workflows/.github/workflows/maui-build-android.yml@main
+    with:
+      dotnet-version: "9.0.x"
+      dotnet-publish-version: "9.0"
+      java-version: "17"
+      project-directory: "MauiApp1/"
+      project-name: "MauiApp1"
+      apk-filename: "com.gustin.mauiapp-Signed.apk"
+      production-branch-name: "main"
+      staging-branch-pattern: "release/"
+      appsettings-filename: "appsettings.json"
+    secrets:
+      ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+      ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+      ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
