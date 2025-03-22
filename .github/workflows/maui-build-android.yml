@@ -1,5 +1,4 @@
 name: Build & Deploy MAUI Android
-run-name: Build & Deploy MAUI Android Executed by @{{ github.actor }}
 
 on:
   workflow_dispatch:
