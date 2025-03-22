@@ -1,6 +1,10 @@
 name: Build MAUI iOS
 
 on:
+  pull_request: 
+    branches:
+      - development
+      - main
   workflow_dispatch:
 
 jobs:

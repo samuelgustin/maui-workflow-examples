@@ -1,6 +1,11 @@
 name: Build & Deploy MAUI iOS
 
 on:
+  push:
+    branches:
+      - development
+      - release/**
+      - main
   workflow_dispatch:
 
 jobs:
@@ -32,6 +37,7 @@ jobs:
     with:
       artifact-name: "mauiapp.ipa"
       firebase-app-id: "1:569511542907:ios:658471e11cd8c8e48d22de"
+      firebase-groups: "maui-workflow-examples"
       project-directory: "MauiApp1/"
       project-name: "MauiApp1"
       application-platform: "ios"

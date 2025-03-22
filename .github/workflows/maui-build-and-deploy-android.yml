@@ -1,6 +1,11 @@
 name: Build & Deploy MAUI Android
 
 on:
+  push:
+    branches:
+      - development
+      - release/**
+      - main
   workflow_dispatch:
     
 jobs:
@@ -27,6 +32,7 @@ jobs:
     with:
       artifact-name: "com.gustin.maui.workflow.example-Signed.apk"
       firebase-app-id: "1:569511542907:android:fb77a7e43ec8c4328d22de"
+      firebase-groups: "maui-workflow-examples"
       project-directory: "MauiApp1/"
       project-name: "MauiApp1"
       application-platform: "android"
