@@ -30,9 +30,7 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
         <!-- CHANGE THESE VALUES -->
         <IpaPackageName>mauiapp.ipa</IpaPackageName>
-        <CodesignProvision>Wildcard Distribution Profile</CodesignProvision>
-        <CodesignKey>iOS Distribution</CodesignKey>
-
+        
         <!-- TURN OFF THE INTERPRETER IF YOU DON'T NEED IT (its fine to leave on if you don't know) -->
         <!-- https://github.com/dotnet/maui/issues/13019 -->
         <UseInterpreter>true</UseInterpreter>
