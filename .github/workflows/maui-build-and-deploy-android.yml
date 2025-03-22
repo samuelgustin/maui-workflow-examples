@@ -25,7 +25,7 @@ jobs:
     uses: samuelgustin/maui-workflows/.github/workflows/distribute-to-firebase.yml@main
     needs: maui-build-android
     with:
-      artifact-name: "com.gustin.mauiapp-Signed.apk"
+      artifact-name: "com.gustin.maui.workflow.example-Signed.apk"
       firebase-app-id: "1:569511542907:android:fb77a7e43ec8c4328d22de"
       project-directory: "MauiApp1/"
       project-name: "MauiApp1"
