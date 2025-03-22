@@ -9,8 +9,6 @@ jobs:
     with:
       macos-runner-name: "macos-15"
       xcode-version: "16.2"
-      codesigning-identity: "Apple Distribution: Samuel Gustin (LC2BMCBM4N)"
-      codesigning-provisioning-profile-name: "Wildcard Distribution Profile 2025"
       dotnet-version: "9.0.x"
       dotnet-publish-version: "9.0"
       project-directory: "MauiApp1/"
@@ -20,10 +18,13 @@ jobs:
       staging-branch-pattern: "release/"
       appsettings-filename: "appsettings.json"
     secrets:
+      IOS_SIGNING_CERTIFICATE_NAME: ${{ secrets.IOS_SIGNING_CERTIFICATE_NAME }}
       IOS_SIGNING_CERTIFICATE_BASE64: ${{ secrets.IOS_SIGNING_CERTIFICATE_BASE64 }}
       IOS_SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.IOS_SIGNING_CERTIFICATE_PASSWORD }}
       IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+      IOS_PROVISIONING_PROFILE_NAME: ${{ secrets.IOS_PROVISIONING_PROFILE_NAME }}
       IOS_KEYCHAIN_PASSWORD: ${{ secrets.IOS_KEYCHAIN_PASSWORD }}
+      APPSETTINGS_BASE64: ${{ secrets.APPSETTINGS_BASE64 }}
 
   deploy-ios-to-firebase:
     uses: samuelgustin/maui-workflows/.github/workflows/distribute-to-firebase.yml@main
